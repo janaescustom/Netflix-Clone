@@ -15,7 +15,7 @@ const Player = () => {
     published_at: "",
     type: ""
   });
-  const [dataAvailable, setDataAvailable] = useState(true);
+  const [dataAvailable, setDataAvailable] = useState([true]);
 
   const options = {
   method: 'GET',
@@ -27,7 +27,7 @@ const Player = () => {
 
 useEffect(() => {
 
-  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
     .then(res => res.json())
     .then(res => {
         if (res.results && res.results.length > 0) {
@@ -43,7 +43,7 @@ useEffect(() => {
         setDataAvailable(false); // Handle fetch error
       });
 
-}, [])
+})
 
 // useEffect(() => {
 //   const fetchData = async () => {

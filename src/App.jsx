@@ -5,7 +5,7 @@ import Login from './pages/Login/Login'
 import Player from './pages/Player/Player'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/init'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
 
@@ -21,7 +21,7 @@ const App = () => {
         navigate('/login');
       }
     })
-  }, [])
+  })
 
   return (
     <div>
