@@ -15,7 +15,7 @@ const Player = () => {
     published_at: "",
     type: ""
   });
-  const [dataAvailable, setDataAvailable] = useState([true]);
+  const [dataAvailable, setDataAvailable] = useState(true);
 
   const options = {
   method: 'GET',
@@ -27,14 +27,13 @@ const Player = () => {
 
 useEffect(() => {
 
-  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
+  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
     .then(res => res.json())
     .then(res => {
         if (res.results && res.results.length > 0) {
           setApiData(res.results[0]);
           setDataAvailable(true); // Set to true if data is found
-        } else {
-          setDataAvailable(false); // No data found
+        } else if (!dataAvailable) {
           toast.error('No video available for this movie.');
         }
       })
@@ -42,22 +41,7 @@ useEffect(() => {
         // toast.error('Error when fetching');
         setDataAvailable(false); // Handle fetch error
       });
-
-})
-
-// useEffect(() => {
-//   const fetchData = async () => {
-// try {
-//       const response = await fetchData(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options);
-//       const data = await response.json();
-//       setApiData(data.results[0]);
-// } catch (error) {
-//     toast.error("No trailer available")
-// }
-//   }
-//   fetchData();
-// })
-
+}, [])
 
   return (
     <div className='player'>

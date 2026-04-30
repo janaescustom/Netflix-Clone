@@ -55,7 +55,7 @@ const Navbar = () => {
         <p>Children</p>
         <img src={bell_icon} alt="Bell Icon" className="icons" onClick={handleClick} />
         <div className="navbar-profile">
-          <img src={profile_img} alt='profile image' className='profile'/>
+          <img src={profile_img} alt='Profile Icon' className='profile'/>
           <img src={caret_icon} alt='caret icon' className="caret-icon" />
           <div className="dropdown">
             <p onClick={() => {logout()}}>Sign Out of Netflix</p>
